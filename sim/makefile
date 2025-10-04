@@ -1,6 +1,8 @@
 TEST ?= alu_test
 COUNT ?= 10
 
+ALUVM_DIR := /home/admini/ALUVM_advanced
+
 TOP := ALUVM_top
 
 DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
@@ -10,6 +12,7 @@ REG_LIST := $(shell cat $(DIR)/regression.list)
 REG_TARGETS := $(REG_LIST:%=run_%)
 
 all:
+	export ALUVM_HOME=$(ALUVM_DIR) && \
 	cd $(DIR)/.. && \
 	mkdir -p run && \
 	cd run && \
@@ -33,6 +36,7 @@ all:
 run_%: $(DIR)/regression.list
 	@echo -n "Running test: $* ... "
 	@cd $(DIR)/.. && \
+	export ALUVM_HOME=$(ALUVM_DIR) && \
 	mkdir -p run && \
 	cd run && \
 	echo -n "Running test: $* ... " >> regress.summary && \
