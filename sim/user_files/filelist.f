@@ -1,3 +1,4 @@
++define+CLOCK_PERIOD=10ns
 $ALUVM_HOME/sim/UVM_pkg.sv
 $ALUVM_HOME/common/alu_assertions.sv
 $ALUVM_HOME/common/alu_interface.sv

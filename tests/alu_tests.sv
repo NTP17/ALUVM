@@ -21,6 +21,7 @@ class alu_test extends uvm_test;
         seq = alu_sequence::type_id::create("seq");
         // Start the sequence on the sequencer (not the driver)
         seq.start(env.seqr);
+        #(`CLOCK_PERIOD);
         phase.drop_objection(this);
     endtask
 
@@ -42,6 +43,7 @@ class alu_add_only_test extends alu_test;
         phase.raise_objection(this);
         seq = alu_add_only_sequence::type_id::create("seq");
         seq.start(env.seqr);
+        #(`CLOCK_PERIOD);
         phase.drop_objection(this);
     endtask
 endclass
@@ -62,6 +64,7 @@ class alu_subtract_only_test extends alu_test;
         phase.raise_objection(this);
         seq = alu_subtract_only_sequence::type_id::create("seq");
         seq.start(env.seqr);
+        #(`CLOCK_PERIOD);
         phase.drop_objection(this);
     endtask
 endclass
@@ -82,6 +85,7 @@ class alu_corner_test extends alu_test;
         phase.raise_objection(this);
         seq = alu_corner_sequence::type_id::create("seq");
         seq.start(env.seqr);
+        #(`CLOCK_PERIOD);
         phase.drop_objection(this);
     endtask
 endclass
@@ -128,6 +132,7 @@ class alu_random_reset_test extends alu_test;
                 random_reset();
             end
         join
+        #(`CLOCK_PERIOD);
         phase.drop_objection(this);
     endtask
 endclass
